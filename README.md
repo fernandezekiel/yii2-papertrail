@@ -11,7 +11,7 @@ Example Configuration
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'fernandezekiel\papertrail\PaperTrail',
+                    'class' => 'fernandezekiel\papertrail\PaperTrailTarget',
                     'levels' => ['error', 'warning'],
                     'url' => 'logs.papertrailapp.com',
                     'port' => 99999
