@@ -20,12 +20,15 @@ class PaperTrailTarget extends Target
      * @var string url of the papertrail server
      */
     public $url = 'logs.papertrailapp.com';
-
     /**
      * @var int server port of the papertrail server
      */
     public $port;
 
+
+    /**
+     * @inheritdoc
+     */
     public function export()
     {
         foreach ($this->messages as $message) {
@@ -33,11 +36,18 @@ class PaperTrailTarget extends Target
             if (!is_string($text)) {
                 $text = VarDumper::export($text);
             }
-
-            $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
-            socket_sendto($sock, $text, strlen($text), 0, $this->url, $this->port);
-            socket_close($sock);
+            $this->sendLog($text);
         }
+    }
 
+    /**
+     * sends the text to the papertrail server
+     * @param string $text
+     */
+    public function sendLog($text)
+    {
+        $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+        socket_sendto($sock, $text, strlen($text), 0, $this->url, $this->port);
+        socket_close($sock);
     }
 }
