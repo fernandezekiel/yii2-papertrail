@@ -5,7 +5,7 @@
  * @license http://opensource.org/licenses/BSD-3-Clause
  */
 
-namespace common\fernandezekiel\papertrail;
+namespace fernandezekiel\papertrail;
 
 
 use yii\helpers\VarDumper;
